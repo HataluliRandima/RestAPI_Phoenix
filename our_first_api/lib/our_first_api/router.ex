@@ -21,6 +21,8 @@ defmodule OurFirstApi.Router do
  # HANDLERS
   get "/", do: send_resp(conn, 200, "OK")
 
+  get "/name", do: send_resp(conn, 200, "Mr Genny")
+
 
   #FAllback handler to catch all errors that will come through
   # For any endpoints that doent exist
