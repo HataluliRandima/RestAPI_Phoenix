@@ -15,3 +15,9 @@ plug -- gives us tools to work with HTTP requests (like building routers and end
 cowboy -- is a web server written in Erlang that handles all connections and processes any incoming and outgoing requests.
 
 Jason: is a sper fast json parser and generator which we will use to handle our json.
+
+STEPS 
+
+1. create router.ex file
+   - Then put plugs on scope on router file
+        (use Plug.Router ) we installed it using that dependency with plug cowboy.
