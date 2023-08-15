@@ -21,3 +21,5 @@ STEPS
 1. create router.ex file
    - Then put plugs on scope on router file
         (use Plug.Router ) we installed it using that dependency with plug cowboy.
+
+        order matters
