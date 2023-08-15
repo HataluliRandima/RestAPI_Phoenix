@@ -21,3 +21,10 @@ mix phx.new real_deal_api --no-install --app real_deal_api --database postgres -
 ## You can also run your app inside IEx (Interactive Elixir) as:
 
     $ iex -S mix phx.server
+
+## Create database 
+- run the command 
+    $ mix ecto.migrate
+
+- run to double check
+  $ psql -U username/postgres dbname/real_deal_api_dev
