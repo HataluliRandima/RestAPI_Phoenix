@@ -24,7 +24,7 @@ defmodule OurFirstApi.MixProject do
     [
 
        # Added new dependencies
-       # After adding this dont forget to mix get deps
+       # After adding this dont forget to mix deps.get
        {:plug_cowboy, "~> 2.0"},
        {:jason, "~> 1.4"}
     ]
