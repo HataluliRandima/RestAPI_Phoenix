@@ -8,3 +8,10 @@
 - plug_cowboy: a module composed of two modules(plug module(gives us tools to work with HTTP requests) and cowboy module(a web server written in Erlang that handles all connections and processes any incoming and outgoing requests))
 JASON: super fast JSON parser and generator which we will use to handle our JSON
 plug():match) : match incoming requests to defined endpoints
+
+plug cowboy is a module composed of two modules 
+it has plug module and cowboy module 
+plug -- gives us tools to work with HTTP requests (like building routers and endpoints set in status code and body parsing but it doent know how to handle connections )
+cowboy -- is a web server written in Erlang that handles all connections and processes any incoming and outgoing requests.
+
+Jason: is a sper fast json parser and generator which we will use to handle our json.
