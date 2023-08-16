@@ -8,7 +8,7 @@ defmodule RealDealApiWeb.AccountController do
   alias RealDealApi.Users.User
 
   alias RealDealApiWeb.Auth.Guardian
-  Auth.ErrorResponse
+  alias RealDealApiWeb.Auth.ErrorResponse
 
   action_fallback RealDealApiWeb.FallbackController
 
