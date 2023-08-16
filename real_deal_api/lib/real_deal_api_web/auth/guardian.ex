@@ -31,9 +31,10 @@ defmodule RealDealApiWeb.Auth.Guardian do
     {:error, :no_id_provided}
   end
 
+  # use this to login or to get our token
   def authenticate(email, password) do
     case Accounts.get_account_by_email(email) do
-      nil -> {:error, unauthored}
+      nil -> {:error, :unauthored}
       account ->
         case validate_password(password,account.hash_password) do
           true -> create_token(account)
