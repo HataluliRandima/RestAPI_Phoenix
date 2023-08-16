@@ -33,6 +33,7 @@ defmodule RealDealApiWeb.AccountController do
     case Guardian.authenticate(email, hash_password) do
       {:ok, account, token} ->
         conn
+        |> Plug.Conn.put_session(:account_id, account.id)
         |> put_status(:ok)
         |> render(:showhata, %{account: account, token: token})
       {:error, :unauthorized} -> raise ErrorResponse.Unauthorized, message: "Email or Password incorrect."
