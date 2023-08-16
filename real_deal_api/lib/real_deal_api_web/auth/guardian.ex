@@ -35,6 +35,21 @@ defmodule RealDealApiWeb.Auth.Guardian do
     case Accounts.get_account_by_email(email) do
       nil -> {:error, unauthored}
       account ->
+        case validate_password(password,account.hash_password) do
+          true -> create_token(account)
+          false -> {:error, :unauthorized}
+        end
     end
   end
+
+  defp validate_password(password, hash_password) do
+    Bcrypt.verify_pass(password, hash_password)
+  end
+
+  # function to generate our token
+  defp create_token(account) do
+    {:ok, token, _claims} = encode_and_sign(account)
+    {:ok, account, token}
+  end
+
 end
