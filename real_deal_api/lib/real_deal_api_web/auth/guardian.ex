@@ -22,12 +22,19 @@ defmodule RealDealApiWeb.Auth.Guardian do
 
     case Accounts.get_account!(id) do
       nil -> {:error, :not_found}
-      resource => {:ok, resource}
+      resource -> {:ok, resource}
     end
   end
 
   # for empty staff to give an error
   def resource_from_claims(_claims) do
     {:error, :no_id_provided}
+  end
+
+  def authenticate(email, password) do
+    case Accounts.get_account_by_email(email) do
+      nil -> {:error, unauthored}
+      account ->
+    end
   end
 end
