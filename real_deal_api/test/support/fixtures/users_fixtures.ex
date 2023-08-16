@@ -7,17 +7,17 @@ defmodule RealDealApi.UsersFixtures do
   @doc """
   Generate a user.
   """
-  def user_fixture(attrs \\ %{}) do
-    {:ok, user} =
-      attrs
-      |> Enum.into(%{
-        biography: "some biography",
-        full_name: "some full_name"
-      })
-      |> RealDealApi.Users.create_user()
+  # def user_fixture(attrs \\ %{}) do
+  #   {:ok, user} =
+  #     attrs
+  #     |> Enum.into(%{
+  #       biography: "some biography",
+  #       full_name: "some full_name"
+  #     })
+  #     |> RealDealApi.Users.create_user()
 
-    user
-  end
+  #   user
+  # end
 
   @doc """
   Generate a user.
