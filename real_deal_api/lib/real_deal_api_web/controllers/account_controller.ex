@@ -12,7 +12,8 @@ defmodule RealDealApiWeb.AccountController do
   end
 
   def create(conn, %{"account" => account_params}) do
-    with {:ok, %Account{} = account} <- Accounts.create_account(account_params) do
+    with {:ok, %Account{} = account} <- Accounts.create_account(account_params),
+         {:ok, token, _claims} <- Guardian.encode_and_sign(account) do
       conn
       |> put_status(:created)
       |> render(:show, account: account)
