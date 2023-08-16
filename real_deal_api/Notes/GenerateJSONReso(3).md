@@ -9,3 +9,9 @@
 
 - create user schema 
   $ mix phx.gen.json Users User users account_id:references:accounts full_name:string gender:string biography:text
+
+ # On migrations 
+   create unique_index(:accounts, [:email])
+   - So creating index its create one of the values in our table here its email.
+   - It allows us to search by that variable
+   - And it wont allow duplicate values for this variable no multiple accounts of the same email
