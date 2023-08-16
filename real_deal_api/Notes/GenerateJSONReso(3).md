@@ -17,4 +17,8 @@
    - And it wont allow duplicate values for this variable no multiple accounts of the same email
 
 # changeset(account, attrs) Function 
-- is called to create our object before persists into the database and also it allows us to do all sorts of validations checks here.
+- is called to create our object before persists into the database and also it allows us to do all sorts of validations checks here.\
+
+- Check cast meaning 
+
+- For this we created two schemas and connected them with databases  and done some migration on creating tables and databses 
