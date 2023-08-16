@@ -16,5 +16,8 @@ defmodule RealDealApi.Accounts.Account do
     account
     |> cast(attrs, [:email, :hash_password])
     |> validate_required([:email, :hash_password])
+    |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have the @ sign and no spaces") # email validation
+    |> validate_length(:email, max: 160) # 160 chracters
+    |> unique_constraint(:email)
   end
 end

@@ -15,3 +15,6 @@
    - So creating index its create one of the values in our table here its email.
    - It allows us to search by that variable
    - And it wont allow duplicate values for this variable no multiple accounts of the same email
+
+# changeset(account, attrs) Function 
+- is called to create our object before persists into the database and also it allows us to do all sorts of validations checks here.
