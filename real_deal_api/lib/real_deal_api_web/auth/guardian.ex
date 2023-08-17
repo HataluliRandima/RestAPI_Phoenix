@@ -49,8 +49,17 @@ defmodule RealDealApiWeb.Auth.Guardian do
 
   # function to generate our token
   defp create_token(account) do
-    {:ok, token, _claims} = encode_and_sign(account)
+    {:ok, token, _claims} = encode_and_sign(account, %{}, token_options(type) )
     {:ok, account, token}
+  end
+
+  # Helper function to help us for token options
+  defp token_options(type) do
+    case type do
+      :access -> [token_type: "access", ttl: {2, :hour}]
+      :reset -> [token_type: "reset", ttl: {15, :minute}]
+      :admin -> [token_type: "admin", ttl: {90, :day}]
+    end
   end
 
   # The functions below are the ovverides
