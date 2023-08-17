@@ -37,6 +37,14 @@ defmodule RealDealApi.Accounts do
   """
   def get_account!(id), do: Repo.get!(Account, id)
 
+
+  def get_full_account(id) do
+    Account # our scema file
+    |> where(id: ^id)
+    # basically is for returning user data wtogether with account
+    |> preload([:user]) # this bcs of the relationship between the two
+    |> Repo.one()
+  end
   @doc """
   Gets a single account.any()
 
