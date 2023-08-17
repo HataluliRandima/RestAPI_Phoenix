@@ -50,3 +50,5 @@
     end
   end
  ```
+ - Now we do the migration to create database table for guardian db 
+ - Run this command mix guardian.db.gen.migration
