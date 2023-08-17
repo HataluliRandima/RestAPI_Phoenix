@@ -35,16 +35,19 @@ defmodule RealDealApiWeb.AccountController do
   # Crerating or regestering account
   def create(conn, %{"account" => account_params}) do
     with {:ok, %Account{} = account} <- Accounts.create_account(account_params),
-         {:ok, token, _claims} <- Guardian.encode_and_sign(account),
+        # Remove it because we are using it on the guardian file  {:ok, token, _claims} <- Guardian.encode_and_sign(account),
          {:ok, %User{} = _user} <- Users.create_user(account, account_params) do
-      conn
-      |> put_status(:created)
-      |> render(:showhata, %{account: account, token: token})
+          authorize_account(conn, account.email, account_params["hash_password"])
     end
   end
 
   # For sign in or log in
   def sign_in(conn, %{"email" => email, "hash_password" => hash_password}) do
+    authorize_account(conn, email, hash_password)
+  end
+
+
+  defp authorize_account(conn, email, hash_password) do
     case Guardian.authenticate(email, hash_password) do
       {:ok, account, token} ->
         conn
@@ -54,7 +57,6 @@ defmodule RealDealApiWeb.AccountController do
       {:error, :unauthorized} -> raise ErrorResponse.Unauthorized, message: "Email or Password incorrect."
     end
   end
-
 
   # video 11
 

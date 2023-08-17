@@ -37,9 +37,20 @@ defmodule RealDealApiWeb.Auth.Guardian do
       nil -> {:error, :unauthored}
       account ->
         case validate_password(password,account.hash_password) do
-          true -> create_token(account)
+          true -> create_token(account, :access)
           false -> {:error, :unauthorized}
         end
+    end
+  end
+
+  # another function
+
+  def authenticate(token) do
+    with {:ok, claims} <- decode_and_verify(token),
+         {:ok, account} <- resource_from_claims(claims),
+         {:ok, _old, {new_token, _claims}} <- refresh(token) do
+
+      {:ok, account, new_token}
     end
   end
 
@@ -48,7 +59,7 @@ defmodule RealDealApiWeb.Auth.Guardian do
   end
 
   # function to generate our token
-  defp create_token(account) do
+  defp create_token(account, type) do
     {:ok, token, _claims} = encode_and_sign(account, %{}, token_options(type) )
     {:ok, account, token}
   end
