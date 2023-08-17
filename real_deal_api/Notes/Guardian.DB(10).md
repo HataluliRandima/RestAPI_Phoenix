@@ -52,3 +52,7 @@
  ```
  - Now we do the migration to create database table for guardian db 
  - Run this command mix guardian.db.gen.migration
+ - mix ecto.migrate
+
+ 5. Create sign out function that will revoke our active tokens with sign out endpoint 
+ 6. On Account controller create sign out meathod
