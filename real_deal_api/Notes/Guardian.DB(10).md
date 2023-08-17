@@ -18,4 +18,35 @@
             - By default on token are set to 28 days unless we revoke them
 
 3. Add command in our supervision tree, in the telemetry.ex file.
-            
+  - On the children add this --  {Guardian.DB.Token.SweeperServer, []}
+
+4. On the guardian.ex under the create_token function 
+ - You have to override three functions    
+ - encode_sign, verify and on revok they are used by guardian in the background  already when we are authenticating 
+ - checking guardian db doc on hex doc
+ - Add the following function from the guardian db 
+ ```
+   def after_encode_and_sign(resource, claims, token, _options) do
+    with {:ok, _} <- Guardian.DB.after_encode_and_sign(resource, claims["typ"], claims, token) do
+      {:ok, token}
+    end
+  end
+
+  def on_verify(claims, token, _options) do
+    with {:ok, _} <- Guardian.DB.on_verify(claims, token) do
+      {:ok, claims}
+    end
+  end
+
+  def on_refresh({old_token, old_claims}, {new_token, new_claims}, _options) do
+    with {:ok, _, _} <- Guardian.DB.on_refresh({old_token, old_claims}, {new_token, new_claims}) do
+      {:ok, {old_token, old_claims}, {new_token, new_claims}}
+    end
+  end
+
+  def on_revoke(claims, token, _options) do
+    with {:ok, _} <- Guardian.DB.on_revoke(claims, token) do
+      {:ok, claims}
+    end
+  end
+ ```
