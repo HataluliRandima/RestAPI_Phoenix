@@ -56,3 +56,6 @@
 
  5. Create sign out function that will revoke our active tokens with sign out endpoint 
  6. On Account controller create sign out meathod
+ 7. Go to router to create router for sign out 
+ 8. We are now using Guardian db , which takes an active role and store each token in the databse verifying its present. If token is not in the databse4 thrn ot the token cant be verified and we get invalid token response.
+ 9. This gives us ability to revoke access to specific token any time.
