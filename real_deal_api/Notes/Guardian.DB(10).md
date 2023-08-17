@@ -1,0 +1,2 @@
+# Guardian DB
+- we use Guardian.DB to track JSON Web Tokens for our REST API project. Guardian.DB is a simple module that hooks into Guardian to prevent playback of tokens. Guardian.DB takes an active role and stores each token in the database, verifying it's present. The token is not valid if it's not in the database. Follow along for a step-by-step tutorial to learn how to implement Guardian.DB, allowing us to track and revoke tokens in our Elixir REST API project.
