@@ -1,0 +1,3 @@
+# In a step-by-step tutorial, we will learn how to use Ecto Preload to query the user association with our account data in our REST API Tutorial. We will refactor our account JSON response to include our user JSON data. Follow along for a step-by-step tutorial to learn how to implement Ecto Preload in our Elixir REST API Tutorial.
+
+1. Using Ecto preload to fetch our user data and return it as an embedded map with our account struct.
