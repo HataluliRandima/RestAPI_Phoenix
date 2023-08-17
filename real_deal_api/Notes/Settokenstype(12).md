@@ -62,6 +62,7 @@ Creating private function thats call our authenticate part
   ``` 
 
 7. Go to guardian file and create new fuction below for authenticate  
+# instead calling all those function inside refresh token function on the controller we can just do cleans up by creating thothe function inside one function calling them with and following the order 
    ```
    
   def authenticate(token) do
@@ -71,5 +72,18 @@ Creating private function thats call our authenticate part
 
       {:ok, account, new_token}
     end
+  end
+  ```
+
+ # Our refresh session function will look like this now 
+ ```
+   def refresh_session(conn, %{}) do
+    token = Guardian.Plug.current_token(conn)
+    {:ok, account, token} = Guardian.authenticate(token)
+     conn
+     |> Plug.Conn.put_session(:account_id, account.id)
+     |> put_status(:ok)
+     |> render(:showhata, %{account: account, token: new_token})
+
   end
   ```
