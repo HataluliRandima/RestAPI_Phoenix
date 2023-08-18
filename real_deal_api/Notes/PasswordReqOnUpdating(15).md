@@ -21,3 +21,5 @@
  get "accounts/current"
 
  6. Dont forget to pass current pass when testing on post man for the update 
+
+ 7. This is done
