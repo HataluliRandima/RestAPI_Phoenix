@@ -84,12 +84,24 @@ defmodule RealDealApiWeb.AccountController do
     # conn.assigns.
   end
 
-  def update(conn, %{"account" => account_params}) do
-    account = Accounts.get_account!(account_params["id"])
+  def current_account(conn, %{}) do
+    conn
+    |> put_status(:ok)
+    |> render(:show_fullaccount, %{account: conn.assigns.account})
+  end
 
-    with {:ok, %Account{} = account} <- Accounts.update_account(account, account_params) do
+  def update(conn, %{"current_hash" => current_hash,"account" => account_params}) do
+   # No need to query on the database for this we can use other way
+   # account = Accounts.get_account!(account_params["id"])
+
+   case Guardian.validate_password(current_hash, conn.assigns.account.hash_password) do
+    true ->
+      {:ok, account} = Accounts.update_account(conn.assigns.account, account_params)
       render(conn, :show, account: account)
-    end
+
+    false ->
+      raise ErrorResponse.Unauthorized, message: "Password incorrect."
+  end
   end
 
   def delete(conn, %{"id" => id}) do
