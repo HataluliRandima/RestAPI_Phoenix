@@ -44,3 +44,13 @@ end
     end
   end
   ```
+
+  5. Went to set account file under the auth to make some changes so that our user can be linked with accout there by the session
+
+  ```
+  account = Accounts.get_full_account(account_id)
+  ```
+
+6. On the user controller went to update method 
+ we removed id as params because we will take the one from the account 
+ - And instead of taking user at the database we will take the one already stored on the assigns session made some changes there 
