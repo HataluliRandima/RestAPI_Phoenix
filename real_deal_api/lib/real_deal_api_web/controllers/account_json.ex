@@ -16,12 +16,13 @@ defmodule RealDealApiWeb.AccountJSON do
     %{data: data(account)}
   end
 
+
   def show_fullaccount(%{account: account}) do
     %{
       id: account.id,
       email: account.email,
       #user: render_one(account.user, UserJSON, :show )
-      user: UserJSON.show(account.user)
+      user: UserJSON.data(account.user)
     }
   end
 
