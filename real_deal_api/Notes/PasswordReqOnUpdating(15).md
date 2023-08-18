@@ -19,3 +19,5 @@
 
  5. Adde new router to see the current account 
  get "accounts/current"
+
+ 6. Dont forget to pass current pass when testing on post man for the update 
